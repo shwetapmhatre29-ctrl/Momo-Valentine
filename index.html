@@ -1,0 +1,143 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>For Momo ♥️</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      background: linear-gradient(135deg, #ff4d6d, #ff99ac);
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .slide {
+      display: none;
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      width: 90%;
+      max-width: 420px;
+      text-align: center;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+    }
+
+    .slide.active {
+      display: block;
+    }
+
+    button {
+      padding: 12px 22px;
+      margin: 10px;
+      border: none;
+      border-radius: 30px;
+      font-size: 1rem;
+      cursor: pointer;
+      background: #ff4d6d;
+      color: white;
+    }
+
+    .warning {
+      color: #ff1e56;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    .float {
+      position: absolute;
+      font-size: 24px;
+      animation: floatUp 6s linear infinite;
+      opacity: 0.9;
+    }
+
+    @keyframes floatUp {
+      from { transform: translateY(100vh); }
+      to { transform: translateY(-10vh); }
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="slide active">
+  <h2>🌹 Rose Day</h2>
+  <p>Who do you love more? 😌</p>
+  <button onclick="next()">You ♥️</button>
+  <button onclick="wrong(this)">Someone else 🙄</button>
+  <div class="warning"></div>
+</div>
+
+<div class="slide">
+  <h2>💌 Propose Day</h2>
+  <p>Who would you choose forever?</p>
+  <button onclick="next()">You, obviously 💍</button>
+  <button onclick="wrong(this)">Still thinking 🤔</button>
+  <div class="warning"></div>
+</div>
+
+<div class="slide">
+  <h2>🤗 Hug Day</h2>
+  <p>Who deserves your warmest hugs?</p>
+  <button onclick="next()">Only you 🤗</button>
+  <button onclick="wrong(this)">Everyone 😐</button>
+  <div class="warning"></div>
+</div>
+
+<div class="slide">
+  <h2>💋 Kiss Day</h2>
+  <p>Who gets your kisses?</p>
+  <button onclick="next()">You 😘</button>
+  <button onclick="wrong(this)">Depends 🙃</button>
+  <div class="warning"></div>
+</div>
+
+<!-- FINAL -->
+<div class="slide" id="final">
+  <h2>♥️ Momo ♥️</h2>
+  <p>Will you be my Valentine?</p>
+  <button onclick="yes()">YES ♥️</button>
+  <button onclick="wrong(this)">NO 🙄</button>
+  <div class="warning"></div>
+</div>
+
+<script>
+  let current = 0;
+  const slides = document.querySelectorAll(".slide");
+
+  function next() {
+    slides[current].classList.remove("active");
+    current++;
+    slides[current].classList.add("active");
+  }
+
+  function wrong(btn) {
+    btn.parentElement.querySelector(".warning").innerText =
+      "Wrong choice 😤 Try again, Momo.";
+  }
+
+  function yes() {
+    startFloating();
+  }
+
+  function startFloating() {
+    setInterval(() => {
+      const el = document.createElement("div");
+      el.className = "float";
+      el.innerHTML = Math.random() > 0.5 ? "♥️" : "🌹";
+      el.style.left = Math.random() * 100 + "vw";
+      el.style.animationDuration = (4 + Math.random() * 3) + "s";
+      document.body.appendChild(el);
+      setTimeout(() => el.remove(), 7000);
+    }, 250);
+  }
+</script>
+
+</body>
+</html>
