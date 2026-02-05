@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Momo & Me 💖</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      text-align: center;
+      color: #2d2d2d;
+    }
+
+    .card {
+      background: white;
+      border-radius: 20px;
+      padding: 25px;
+      width: 90%;
+      max-width: 420px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .slide {
+      display: none;
+    }
+
+    .slide.active {
+      display: block;
+    }
+
+    button {
+      padding: 12px 22px;
+      border-radius: 30px;
+      border: none;
+      font-size: 1rem;
+      cursor: pointer;
+      margin: 10px;
+    }
+
+    .next, .yes {
+      background: #ff4d6d;
+      color: white;
+    }
+
+    .no {
+      background: #ddd;
+      position: absolute;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="card">
+
+  <div class="slide active">
+    <h2>Hey Momo 💕</h2>
+    <p>Welcome to our Valentine Week 🥹</p>
+    <button class="next" onclick="nextSlide()">Start 💖</button>
+  </div>
+
+  <div class="slide">
+    <h2>🌹 Rose Day</h2>
+    <p>One rose for every reason I love you.<br>Spoiler: I ran out of roses.</p>
+    <button class="next" onclick="nextSlide()">Next 💕</button>
+  </div>
+
+  <div class="slide">
+    <h2>💌 Propose Day</h2>
+    <p>No fancy lines.<br>Just me choosing you, every day.</p>
+    <button class="next" onclick="nextSlide()">Next 💕</button>
+  </div>
+
+  <div class="slide">
+    <h2>🍫 Chocolate Day</h2>
+    <p>You’re sweeter than chocolate<br>and harder to share 😌</p>
+    <button class="next" onclick="nextSlide()">Next 💕</button>
+  </div>
+
+  <div class="slide">
+    <h2>🧸 Teddy Day</h2>
+    <p>If I’m ever sad,<br>I just need you.</p>
+    <button class="next" onclick="nextSlide()">Next 💕</button>
+  </div>
+
+  <div class="slide">
+    <h2>🤝 Promise Day</h2>
+    <p>I promise to love you,<br>support you, and annoy you forever.</p>
+    <button class="next" onclick="nextSlide()">Next 💕</button>
+  </div>
+
+  <div class="slide">
+    <h2>🤗 Hug Day</h2>
+    <p>A tight virtual hug for you.<br>Real one coming soon 💞</p>
+    <button class="next" onclick="nextSlide()">Next 💕</button>
+  </div>
+
+  <div class="slide">
+    <h2>💋 Kiss Day</h2>
+    <p>This one is best kept offline 😉</p>
+    <button class="next" onclick="nextSlide()">Next 💕</button>
+  </div>
+
+  <div class="slide">
+    <h2>Momo 💘</h2>
+    <p>Will you be my Valentine?</p>
+
+    <button class="yes" onclick="sayYes()">YES 😍</button>
+    <button class="no" id="noBtn">No 🙄</button>
+
+    <p id="response"></p>
+  </div>
+
+</div>
+
+<script>
+  let currentSlide = 0;
+  const slides = document.querySelectorAll(".slide");
+
+  function nextSlide() {
+    slides[currentSlide].classList.remove("active");
+    currentSlide++;
+    slides[currentSlide].classList.add("active");
+  }
+
+  function sayYes() {
+    document.getElementById("response").innerHTML =
+      "YAYYYY 🥹💞<br>You’re officially my forever Valentine 💍";
+  }
+
+  const noBtn = document.getElementById("noBtn");
+
+  noBtn.addEventListener("mouseover", () => {
+    const card = document.querySelector(".card");
+    const maxX = card.clientWidth - noBtn.clientWidth;
+    const maxY = card.clientHeight - noBtn.clientHeight;
+
+    const randomX = Math.random() * maxX;
+    const randomY = Math.random() * maxY;
+
+    noBtn.style.left = randomX + "px";
+    noBtn.style.top = randomY + "px";
+  });
+</script>
+
+</body>
+</html>
